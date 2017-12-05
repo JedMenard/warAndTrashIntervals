@@ -3,7 +3,12 @@ from math import sqrt
 
 def main(n, randomFile):
     t = 1.645
-    random = open(randomFile, 'r')
+    try:
+        random = open(randomFile, 'r')
+    except IOError:
+        print "Error opening file."
+        exit(1)
+
     totalWarNbar = 0
     totalWarLbar = 0
     totalTrashNbar = 0
