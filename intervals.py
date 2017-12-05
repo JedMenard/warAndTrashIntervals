@@ -3,6 +3,8 @@ from math import sqrt
 
 def main(n, randomFile):
     t = 1.645
+    n = int(n)
+
     try:
         random = open(randomFile, 'r')
     except IOError:
@@ -14,7 +16,7 @@ def main(n, randomFile):
     totalTrashNbar = 0
     totalTrashLbar = 0
 
-    for i in range(int(n)):
+    for i in range(n):
         Nbar, _, Lbar = play('war', random)
         Nbar = 1. if Nbar > 700 else 0.
         Lbar = 1. if Lbar > 0.8 else 0.
