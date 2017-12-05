@@ -103,9 +103,9 @@ def main(n, randomFile):
     trashL2w = 2*trashLs/5
 
     print "War N: pHat = {}, sHat = {}, 2w = {}".format(warNp, warNs, warN2w)
-    print "War L: pHat = {}, sHat = {}, 2w = {}".format(warNp, warNs, warN2w)
-    print "Trash N: pHat = {}, sHat = {}, 2w = {}".format(warNp, warNs, warN2w)
-    print "Trash L: pHat = {}, sHat = {}, 2w = {}".format(warNp, warNs, warN2w)
+    print "War L: pHat = {}, sHat = {}, 2w = {}".format(warLp, warLs, warL2w)
+    print "Trash N: pHat = {}, sHat = {}, 2w = {}".format(trashNp, trashNs, trashN2w)
+    print "Trash L: pHat = {}, sHat = {}, 2w = {}".format(trashLp, trashLs, trashL2w)
         
 
 
