@@ -3,11 +3,11 @@ from math import sqrt
 
 def main(n, randomFile):
     t = 1.645
-    try:
-        random = open(randomFile, 'r')
-    except IOError:
-        print "Unable to open file."
-        exit(1)
+    random = open(randomFile, 'r')
+    totalWarNbar = 0
+    totalWarLbar = 0
+    totalTrashNbar = 0
+    totalTrashLbar = 0
 
     for i in range(int(n)):
         Nbar, _, Lbar = play('war', random)
@@ -32,6 +32,9 @@ def main(n, randomFile):
 
             Nbar += dN/count
             Lbar += dL/count
+
+        totalWarNbar += Nbar
+        totalWarLbar += Lbar
 
 
         Nw = sqrt(vN/count)/5
@@ -65,13 +68,37 @@ def main(n, randomFile):
             Nbar += dN/count
             Lbar += dL/count
 
+        totalTrashNbar += Nbar
+        totalTrashLbar += Lbar
+
 
         Nw = sqrt(vN/count)/5
         Lw = sqrt(vL/count)/5
 
         print "OUTPUT :trash-last: {} {} {}".format(Lbar - Lw, Lbar, Lbar + Lw)
         print "OUTPUT :trash-n: {} {} {}".format(Nbar - Nw, Nbar, Nbar + Nw)
-        
+
+
+    warNp = totalWarNbar / n
+    warNs = sqrt(warNp*(1-warNp))
+    warN2w = 2*warNs/5
+    
+    warLp = totalWarLbar / n
+    warLs = sqrt(warLp*(1-warLp))
+    warL2w = 2*warLs/5
+    
+    trashNp = totalTrashNbar / n
+    trashNs = sqrt(trashNp*(1-trashNp))
+    trashN2w = 2*trashNs/5
+    
+    trashLp = totalTrashLbar / n
+    trashLs = sqrt(trashLp*(1-trashLp))
+    trashL2w = 2*trashLs/5
+
+    print "War N: pHat = {}, sHat = {}, 2w = {}".format(warNp, warNs, warN2w)
+    print "War L: pHat = {}, sHat = {}, 2w = {}".format(warNp, warNs, warN2w)
+    print "Trash N: pHat = {}, sHat = {}, 2w = {}".format(warNp, warNs, warN2w)
+    print "Trash L: pHat = {}, sHat = {}, 2w = {}".format(warNp, warNs, warN2w)
         
 
 
