@@ -3,11 +3,7 @@ from math import sqrt
 
 def main(n, randomFile):
     t = 1.645
-    try:
-        random = open(randomFile, 'r')
-    except IOError:
-        print "Unable to open file."
-        exit(1)
+    random = open(randomFile, 'r')
 
     for i in range(int(n)):
         Nbar, _, Lbar = play('war', random)
@@ -34,12 +30,11 @@ def main(n, randomFile):
             Lbar += dL/count
 
 
-        Nw = sqrt(vN)/5
-        Lw = sqrt(vL)/5
+        Nw = sqrt(vN/count)/5
+        Lw = sqrt(vL/count)/5
 
-        
-        print "OUTPUT :war-last: {0:.5f} {1:.5f} {2:.5f}".format(Lbar - Lw, Lbar, Lbar + Lw)
-        print "OUTPUT :war-n: {0:.5f} {1:.5f} {2:.5f}".format(Nbar - Nw, Nbar, Nbar + Nw)
+        print "OUTPUT :war-last: {} {} {}".format(Lbar - Lw, Lbar, Lbar + Lw)
+        print "OUTPUT :war-n: {} {} {}".format(Nbar - Nw, Nbar, Nbar + Nw)
 
 
 
@@ -67,11 +62,11 @@ def main(n, randomFile):
             Lbar += dL/count
 
 
-        Nw = sqrt(vN)/5
-        Lw = sqrt(vL)/5
+        Nw = sqrt(vN/count)/5
+        Lw = sqrt(vL/count)/5
 
-        print "OUTPUT :trash-last: {0:.5f} {1:.5f} {2:.5f}".format(Lbar - Lw, Lbar, Lbar + Lw)
-        print "OUTPUT :trash-n: {0:.5f} {1:.5f} {2:.5f}".format(Nbar - Nw, Nbar, Nbar + Nw)
+        print "OUTPUT :trash-last: {} {} {}".format(Lbar - Lw, Lbar, Lbar + Lw)
+        print "OUTPUT :trash-n: {} {} {}".format(Nbar - Nw, Nbar, Nbar + Nw)
         
         
 
