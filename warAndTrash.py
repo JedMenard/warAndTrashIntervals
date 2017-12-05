@@ -10,8 +10,8 @@ def shuffle(deck, r):
             try:
                 rand = float(r.readline().strip())
             except ValueError:
-                r.readline()
-                rand = float(r.readline().strip())
+                print "Error: File too short."
+                exit(1)
             p = int(rand*(n-c) + c)
             deck[c], deck[p] = [deck[p], deck[c]]
 #            print("Random number: {}".format(rand))
@@ -83,6 +83,7 @@ def playWar(deck, r, N, T, L):
     return winner, N, T, L
 
 def emit(player, cleared, array, seen, inhand, discard, draw, N):
+    return
     print("Turn {}: Player {}.".format(N, player))
     print("Score: {}.".format(cleared))
     print("Card in hand: {}.".format(inhand))
@@ -197,7 +198,7 @@ def playTrash(deck, r, N, T, L):
         discard, draw, winner, N, T, L = \
                  startOfTurn(discard, draw, p1seen, p2seen, p1cleared, \
                                        p2cleared, winner, r, N, T, L)
-        print("turn start")
+        #print("turn start")
         emit('p1', p1cleared, p1array, p1seen, inhand, discard, draw, N)
         #input()
 
@@ -212,13 +213,13 @@ def playTrash(deck, r, N, T, L):
                     p1array[score[discard[-1]]] == 'J')))):
 
             inhand = discard.pop()          
-            print("drew from discard")
+            #print("drew from discard")
             emit('p1', p1cleared, p1array, p1seen, inhand, discard, draw, N)
 
         # Draw from the draw deck
         else:
             inhand = draw.pop()
-            print("drew from hand")
+            #print("drew from hand")
             emit('p1', p1cleared, p1array, p1seen, inhand, discard, draw, N)
 
         #input()
@@ -230,7 +231,7 @@ def playTrash(deck, r, N, T, L):
                     p1seen[score[inhand]] and 
                     p1array[score[inhand]] == 'J')))):
             
-            print("Continuing with card to play")
+            #print("Continuing with card to play")
             # If our card is not a Jack
             emit('p1', p1cleared, p1array, p1seen, inhand, discard, draw, N)
             if score[inhand] >= 0:
@@ -241,7 +242,7 @@ def playTrash(deck, r, N, T, L):
                 p1array[score[inhand]] = inhand
                 inhand = swap
 
-                print("Placed non-jack card down")
+                #print("Placed non-jack card down")
                 emit('p1', p1cleared, p1array, p1seen, inhand, discard, draw, N)
                 #input()
 
@@ -268,7 +269,7 @@ def playTrash(deck, r, N, T, L):
                 inhand = swap
                 
 
-                print("Placed jack down")
+                #print("Placed jack down")
                 emit('p1', p1cleared, p1array, p1seen, inhand, discard, draw, N)
                 #input()
 
@@ -276,12 +277,12 @@ def playTrash(deck, r, N, T, L):
             if False not in p1seen:
     
                 # Clear array and repopulate
-                print("Clearing for p1")
+                #print("Clearing for p1")
                 p1array, discard, draw = clear(p1array, discard, draw,r)
                 p1seen = [False]*(len(p1seen)-1)
                 p1cleared += 1
     
-                print("Cleared array")
+                #print("Cleared array")
                 emit('p1', p1cleared, p1array, p1seen, inhand, discard, draw, N)
                 #input()
 
@@ -293,7 +294,7 @@ def playTrash(deck, r, N, T, L):
         # Discard remainder of hand
         discard.append(inhand)
         inhand = 'na'
-        print("Discarded hand, turn over")
+        #print("Discarded hand, turn over")
         emit('p1', p1cleared, p1array, p1seen, inhand, discard, draw, N)
         #input()
 
@@ -303,9 +304,9 @@ def playTrash(deck, r, N, T, L):
             break
 
 
-        print()
-        print()
-        print()
+        #print()
+        #print()
+        #print()
 #        #input('Press any button to continue')
 
 
@@ -315,7 +316,7 @@ def playTrash(deck, r, N, T, L):
                              p2cleared, winner, r, N, T, L)
 
         
-        print("turn start")
+        #print("turn start")
         emit('p2', p2cleared, p2array, p2seen, inhand, discard, draw, N)
         #input()
 
@@ -327,13 +328,13 @@ def playTrash(deck, r, N, T, L):
                     p2array[score[discard[-1]]] == 'J')))):
 
             inhand = discard.pop()
-            print("Drew from discard")
+            #print("Drew from discard")
             emit('p2', p2cleared, p2array, p2seen, inhand, discard, draw, N)
 
         # Draw from the draw deck
         else:
             inhand = draw.pop()
-            print("Drew from deck")
+            #print("Drew from deck")
             emit('p2', p2cleared, p2array, p2seen, inhand, discard, draw, N)
         
         #input()
@@ -347,7 +348,7 @@ def playTrash(deck, r, N, T, L):
                     p2seen[score[inhand]] and 
                     p2array[score[inhand]] == 'J')))):
             
-            print("Continuing with more cards to play")
+            #print("Continuing with more cards to play")
 
             # If our card is not a Jack
             #emit('p2', p2cleared, p2array, p1seen, inhand, discard, draw, N)
@@ -359,7 +360,7 @@ def playTrash(deck, r, N, T, L):
                 p2array[score[inhand]] = inhand
                 inhand = swap
 
-                print("Placed non-jack card")
+                #print("Placed non-jack card")
                 emit('p2', p2cleared, p2array, p2seen, inhand, discard, draw, N)
                 #input()
 
@@ -385,7 +386,7 @@ def playTrash(deck, r, N, T, L):
                 p2array[maxLoc] = inhand
                 inhand = swap
 
-                print("Placed jack")
+                #print("Placed jack")
                 emit('p2', p2cleared, p2array, p2seen, inhand, discard, draw, N)
                 #input()
             
@@ -400,7 +401,7 @@ def playTrash(deck, r, N, T, L):
                 p2seen = [False]*(len(p2seen)-1)
                 p2cleared += 1
         
-                print("Cleared array")
+                #print("Cleared array")
                 emit('p2', p2cleared, p2array, p2seen, inhand, discard, draw, N)
                 #input()
     
@@ -413,14 +414,14 @@ def playTrash(deck, r, N, T, L):
         inhand = 'na'
 
 
-        print("Discarded hand, turn over.")
+        #print("Discarded hand, turn over.")
         emit('p2', p2cleared, p2array, p2seen, inhand, discard, draw, N)
         #input()
 
 
-        print()
-        print()
-        print()
+        #print()
+        #print()
+        #print()
 #        #input('Press any button to continue')
 
     return winner, N, T, L

@@ -5,15 +5,15 @@ def main(n, randomFile):
     t = 1.645
     random = open(randomFile, 'r')
 
-    for i in range(n):
+    for i in range(int(n)):
         Nbar, _, Lbar = play('war', random)
-        Nbar = 1 if Nbar > 700 else 0
-        Lbar = 1 if Lbar > 0.8 else 0
+        Nbar = 1. if Nbar > 700 else 0.
+        Lbar = 1. if Lbar > 0.8 else 0.
         count = 1
         vN = 0
         vL = 0
 
-        while (count < 40 or 1/5 < (t / sqrt(count - 1))):
+        while (count < 40 or 1./5 < (t / sqrt(count - 1))):
             N, _, L = play('war', random)
             N = 1 if N > 700 else 0
             L = 1 if L > 0.8 else 0
@@ -39,14 +39,14 @@ def main(n, randomFile):
 
 
         Nbar, _, Lbar = play('trash', random)
-        Nbar = 1 if Nbar > 125 else 0
-        Lbar = 1 if Lbar > 0.8 else 0
+        Nbar = 1. if Nbar > 125 else 0.
+        Lbar = 1. if Lbar > 0.8 else 0.
         count = 1
         vN = 0
         vL = 0
 
-        while (count < 40 or 1/5 < (t / sqrt(count - 1))):
-            N, _, L = play('war', random)
+        while (count < 40 or 1./5 < (t / sqrt(count - 1))):
+            N, _, L = play('trash', random)
             N = 1 if N > 125 else 0
             L = 1 if L > 0.8 else 0
             
