@@ -3,7 +3,11 @@ from math import sqrt
 
 def main(n, randomFile):
     t = 1.645
-    random = open(randomFile, 'r')
+    try:
+        random = open(randomFile, 'r')
+    except IOError:
+        print "Unable to open file."
+        exit(1)
 
     for i in range(int(n)):
         Nbar, _, Lbar = play('war', random)
